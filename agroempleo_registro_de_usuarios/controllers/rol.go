@@ -37,7 +37,7 @@ func (c *RolController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddRol(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "Message": "creado correctamente", "usuario creado": v}
 		} else {
 			c.Data["json"] = err.Error()
 		}
@@ -61,7 +61,7 @@ func (c *RolController) GetOne() {
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
-		c.Data["json"] = v
+		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "Message": "consulta correctamente", "usuario consultados": v}
 	}
 	c.ServeJSON()
 }
@@ -124,7 +124,7 @@ func (c *RolController) GetAll() {
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
-		c.Data["json"] = l
+		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "Message": "consulta correctamente", "usuarios consultados": l}
 	}
 	c.ServeJSON()
 }
@@ -143,7 +143,7 @@ func (c *RolController) Put() {
 	v := models.Rol{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateRolById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "Message": "Actualizacion correctamente", "usuario actualizado": v}
 		} else {
 			c.Data["json"] = err.Error()
 		}
@@ -164,7 +164,7 @@ func (c *RolController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteRol(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "Message": "Eliminacion correctamente", "usuario eliminado": id}
 	} else {
 		c.Data["json"] = err.Error()
 	}
