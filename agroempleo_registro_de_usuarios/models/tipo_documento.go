@@ -16,7 +16,7 @@ type TipoDocumento struct {
 	Descripcion       string    `orm:"column(descripcion);null"`
 	Activo            bool      `orm:"column(activo)"`
 	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone);auto_now_add"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone);auto;now"`
+	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone);auto_now"`
 }
 
 func (t *TipoDocumento) TableName() string {
