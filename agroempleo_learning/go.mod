@@ -1,4 +1,4 @@
-module github.com/sena_2824182/Agroempleo_cud/agroempleo_learning
+module github.com/sena_2824182/Agroempleo_crud/agroempleo_learning
 
 go 1.23.1
 

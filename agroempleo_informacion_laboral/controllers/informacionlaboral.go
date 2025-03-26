@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sena_2824182/Agroempleo_cud/agroempleo_informacion_laboral/models"
+	"github.com/sena_2824182/Agroempleo_crud/agroempleo_informacion_laboral/models"
 
 	"github.com/astaxie/beego"
 )

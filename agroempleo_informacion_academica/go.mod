@@ -1,4 +1,4 @@
-module github.com/sena_2824182/Agroempleo_cud/agroempleo_informacion_academica
+module github.com/sena_2824182/Agroempleo_crud/agroempleo_informacion_academica
 
 go 1.23.1
 

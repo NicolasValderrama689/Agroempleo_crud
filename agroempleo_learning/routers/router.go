@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"github.com/sena_2824182/Agroempleo_cud/agroempleo_learning/controllers"
+	"github.com/sena_2824182/Agroempleo_crud/agroempleo_learning/controllers"
 
 	"github.com/astaxie/beego"
 )
