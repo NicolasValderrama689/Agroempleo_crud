@@ -11,7 +11,7 @@ import (
 )
 
 type Usuarios struct {
-	Id                             int             `orm:"column(Id_usuario);pk"`
+	Id                             int             `orm:"column(Id_usuario);pk;auto"`
 	Nombre                         string          `orm:"column(Nombre)"`
 	Apellido                       string          `orm:"column(Apellido)"`
 	FechaNacimiento                time.Time       `orm:"column(Fecha_nacimiento);type(timestamp with time zone)"`
@@ -20,8 +20,8 @@ type Usuarios struct {
 	Departamento                   string          `orm:"column(departamento)"`
 	Pais                           string          `orm:"column(pais)"`
 	Telefono                       string          `orm:"column(telefono)"`
-	FechaModificacion              time.Time       `orm:"column(fecha_modificacion);type(timestamp with time zone)"`
-	FechaCreacion                  time.Time       `orm:"column(fecha_creacion);type(timestamp with time zone)"`
+	FechaCreacion                  time.Time       `orm:"column(fecha_creacion);type(timestamp with time zone);auto_now_add"`
+	FechaModificacion              time.Time       `orm:"column(fecha_modificacion);type(timestamp with time zone);auto_now"`
 	Activo                         bool            `orm:"column(Activo)"`
 	IdRolRol                       *Rol            `orm:"column(id_rol_rol);rel(fk)"`
 	IdIdentificacionIdentificacion *Identificacion `orm:"column(Id_identificacion_Identificacion);rel(fk)"`
@@ -40,6 +40,9 @@ func init() {
 // last inserted Id on success.
 func AddUsuarios(m *Usuarios) (id int64, err error) {
 	o := orm.NewOrm()
+	if !m.Activo {
+		m.Activo = true
+	}
 	id, err = o.Insert(m)
 	return
 }

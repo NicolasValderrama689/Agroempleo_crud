@@ -11,12 +11,12 @@ import (
 )
 
 type Identificacion struct {
-	Id                            int            `orm:"column(Id_identificacion);pk"`
+	Id                            int            `orm:"column(Id_identificacion);pk;auto"`
 	Numero                        int            `orm:"column(Numero)"`
 	IdIdentificacionTipoDocumento *TipoDocumento `orm:"column(id_identificacion_tipo_documento);rel(fk)"`
 	Activo                        bool           `orm:"column(activo)"`
-	FechaCreacion                 time.Time      `orm:"column(fecha_creacion);type(timestamp with time zone)"`
-	FechaModificacion             time.Time      `orm:"column(fecha_modificacion);type(timestamp with time zone)"`
+	FechaCreacion              time.Time     `orm:"column(Fecha_creacion);type(timestamp with time zone);auto_now_add"`
+	FechaModificacion          time.Time     `orm:"column(Fecha_modificacion);type(timestamp with time zone);auto_now"`
 }
 
 func (t *Identificacion) TableName() string {
@@ -31,6 +31,9 @@ func init() {
 // last inserted Id on success.
 func AddIdentificacion(m *Identificacion) (id int64, err error) {
 	o := orm.NewOrm()
+	if !m.Activo {
+		m.Activo = true
+	}
 	id, err = o.Insert(m)
 	return
 }
