@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "github.com/sena_2824182/Agroempleo_cud/agroempleo_registro_de_empleo/routers"
+	_ "github.com/sena_2824182/Agroempleo_crud/agroempleo_registro_de_empleo/routers"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"

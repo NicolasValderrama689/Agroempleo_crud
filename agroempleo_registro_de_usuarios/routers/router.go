@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"github.com/sena_2824182/Agroempleo_cud/agroempleo_registro_de_usuarios/controllers"
+	"github.com/sena_2824182/Agroempleo_crud/agroempleo_registro_de_usuarios/controllers"
 
 	"github.com/astaxie/beego"
 )
@@ -16,29 +16,6 @@ import (
 func init() {
 	ns := beego.NewNamespace("/v1",
 
-		beego.NSNamespace("/informacionlaboral",
-			beego.NSInclude(
-				&controllers.InformacionlaboralController{},
-			),
-		),
-
-		beego.NSNamespace("/informacion_academica_buscador",
-			beego.NSInclude(
-				&controllers.InformacionAcademicaBuscadorController{},
-			),
-		),
-
-		beego.NSNamespace("/postulaciones",
-			beego.NSInclude(
-				&controllers.PostulacionesController{},
-			),
-		),
-
-		beego.NSNamespace("/Learning",
-			beego.NSInclude(
-				&controllers.LearningController{},
-			),
-		),
 
 		beego.NSNamespace("/rol",
 			beego.NSInclude(
@@ -52,23 +29,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/Tipo_de_empleo",
-			beego.NSInclude(
-				&controllers.TipoDeEmpleoController{},
-			),
-		),
-
-		beego.NSNamespace("/Vacantes",
-			beego.NSInclude(
-				&controllers.VacantesController{},
-			),
-		),
-
-		beego.NSNamespace("/Ciudad",
-			beego.NSInclude(
-				&controllers.CiudadController{},
-			),
-		),
 
 		beego.NSNamespace("/contraseñas",
 			beego.NSInclude(
