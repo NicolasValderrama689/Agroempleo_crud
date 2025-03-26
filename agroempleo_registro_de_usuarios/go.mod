@@ -1,8 +1,5 @@
 module github.com/sena_2824182/Agroempleo_crud/agroempleo_registro_de_usuarios
 
-<<<<<<< HEAD
-go 1.23.1
-=======
 go 1.24.1
 
 require (
@@ -29,4 +26,3 @@ require (
 	google.golang.org/protobuf v1.23.0 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
->>>>>>> ecd5321dd155a7a08bf5ec408c9d155a8357507b
