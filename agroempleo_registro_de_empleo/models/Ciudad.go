@@ -11,11 +11,11 @@ import (
 )
 
 type Ciudad struct {
-	Id                int       `orm:"column(Id_ciudad_trabajo);pk;auto"`
+	Id                int       `orm:"column(id);pk;auto"`
 	Nombre            string    `orm:"column(Nombre)"`
 	Activo            bool      `orm:"column(Activo);null"`
 	FechaCreacion     time.Time `orm:"column(Fecha_creacion);type(timestamp with time zone);null;auto_now_add"`
-	FechaNodificacion time.Time `orm:"column(fecha_nodificacion);type(timestamp with time zone);null;auto_now"`
+	FechaModificacion time.Time `orm:"column(Fecha_modificacion);type(timestamp with time zone);null;auto_now"`
 }
 
 func (t *Ciudad) TableName() string {
