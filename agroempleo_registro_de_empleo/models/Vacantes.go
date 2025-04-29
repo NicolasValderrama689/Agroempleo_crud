@@ -11,21 +11,21 @@ import (
 )
 
 type Vacantes struct {
-	Id                       int           `orm:"column(Id_empleo);pk;auto"`
-	TituloPuesto             string        `orm:"column(Titulo_puesto)"`
-	DescripcionTrabajo       string        `orm:"column(Descripcion_trabajo)"`
+	Id                       int           `orm:"column(ID_Empleo);pk;auto"`
+	TituloPuesto             string        `orm:"column(Titulo_Puesto)"`
+	DescripcionTrabajo       string        `orm:"column(Descripcion_Trabajo)"`
 	Cargo                    string        `orm:"column(Cargo)"`
 	Salario                  string        `orm:"column(Salario)"`
 	Horario                  string        `orm:"column(Horario)"`
 	Modalidad                string        `orm:"column(Modalidad);null"`
-	NivelRequerido           string        `orm:"column(Nivel_requerido)"`
-	ExperienciaRequrida      string        `orm:"column(Experiencia_requrida)"`
+	NivelRequerido           string        `orm:"column(Nivel_Requerido)"`
+	ExperienciaRequrida      string        `orm:"column(Experiencia_Requerida)"`
 	NumeroVacantes           string        `orm:"column(Numero_Vacantes)"`
 	Activo                  bool          `orm:"column(Activo)"`
-	FechaCreacion            time.Time     `orm:"column(fecha_creacion);type(timestamp with time zone);auto_now_add"`
+	FechaCreacion            time.Time     `orm:"column(Fecha_creacion);type(timestamp with time zone);auto_now_add"`
 	FechaModificacion        time.Time     `orm:"column(Fecha_modificacion);type(timestamp with time zone);auto_now"`
-	IdTipoEmpleoTipoDeEmpleo *TipoDeEmpleo `orm:"column(Id_tipo_empleo_Tipo_de_empleo);rel(fk)"`
-	IdCiudadTrabajoCiudad    *Ciudad       `orm:"column(Id_ciudad_trabajo_Ciudad);rel(fk)"`
+	IdtipoempleoTipodeempleo *TipoDeEmpleo `orm:"column(Id_tipo_empleo_Tipo_de_empleo);rel(fk)"`
+	Idciudadtrabajociudad    *Ciudad       `orm:"column(Id_ciudad_trabajo_ciudad);rel(fk)"`
 }
 
 func (t *Vacantes) TableName() string {
@@ -61,7 +61,7 @@ func GetVacantesById(id int) (v *Vacantes, err error) {
 func GetAllVacantes(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Vacantes))
+	qs := o.QueryTable(new(Vacantes)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
