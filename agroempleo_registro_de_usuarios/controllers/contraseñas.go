@@ -3,10 +3,9 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
+	"github.com/sena_2824182/Agroempleo_crud/agroempleo_registro_de_usuarios/models"
 	"strconv"
 	"strings"
-
-	"github.com/sena_2824182/Agroempleo_crud/agroempleo_registro_de_usuarios/models"
 
 	"github.com/astaxie/beego"
 )
@@ -37,7 +36,7 @@ func (c *ContraseñasController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddContraseñas(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "Message": "creado correctamente", "usuario creado": v}
+			c.Data["json"] = v
 		} else {
 			c.Data["json"] = err.Error()
 		}
@@ -61,7 +60,7 @@ func (c *ContraseñasController) GetOne() {
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
-		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "Message": "consulta correctamente", "usuario consultados": v}
+		c.Data["json"] = v
 	}
 	c.ServeJSON()
 }
@@ -124,7 +123,7 @@ func (c *ContraseñasController) GetAll() {
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
-		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "Message": "consulta correctamente", "usuarios consultados": l}
+		c.Data["json"] = l
 	}
 	c.ServeJSON()
 }
@@ -143,7 +142,7 @@ func (c *ContraseñasController) Put() {
 	v := models.Contraseñas{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateContraseñasById(&v); err == nil {
-			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "Message": "Actualizacion correctamente", "usuario actualizado": v}
+			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
 		}
@@ -164,7 +163,7 @@ func (c *ContraseñasController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteContraseñas(id); err == nil {
-		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "Message": "Eliminacion correctamente", "usuario eliminado": id}
+		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
 	}

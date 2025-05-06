@@ -26,6 +26,7 @@ type Vacantes struct {
 	FechaModificacion        time.Time     `orm:"column(Fecha_modificacion);type(timestamp with time zone);auto_now"`
 	IdtipoempleoTipodeempleo *TipoDeEmpleo `orm:"column(Id_tipo_empleo_Tipo_de_empleo);rel(fk)"`
 	Idciudadtrabajociudad    *Ciudad       `orm:"column(Id_ciudad_trabajo_ciudad);rel(fk)"`
+	Id_usuarios              int            `orm:"column(Id_usuarios)"`
 }
 
 func (t *Vacantes) TableName() string {

@@ -15,8 +15,7 @@ import (
 
 func init() {
 	ns := beego.NewNamespace("/v1",
-
-
+		
 		beego.NSNamespace("/rol",
 			beego.NSInclude(
 				&controllers.RolController{},
@@ -29,16 +28,9 @@ func init() {
 			),
 		),
 
-
 		beego.NSNamespace("/contraseñas",
 			beego.NSInclude(
 				&controllers.ContraseñasController{},
-			),
-		),
-
-		beego.NSNamespace("/Identificacion",
-			beego.NSInclude(
-				&controllers.IdentificacionController{},
 			),
 		),
 
@@ -47,6 +39,7 @@ func init() {
 				&controllers.TipoDocumentoController{},
 			),
 		),
+
 	)
 	beego.AddNamespace(ns)
 }
