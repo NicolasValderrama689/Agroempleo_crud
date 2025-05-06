@@ -36,7 +36,8 @@ func (c *UsuariosController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddUsuarios(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+			c.Data["json"] = map[string]interface{}{"Success": true, "Status": 201, "Message": "Creado correctamente", "Datos creados con id": v}
+
 		} else {
 			c.Data["json"] = err.Error()
 		}
