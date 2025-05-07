@@ -11,11 +11,11 @@ import (
 )
 
 type Rol struct {
-	Id                int       `orm:"column(id_rol);pk"`
+	Id                int       `orm:"column(id_rol);pk;auto"`
 	Nombre            string    `orm:"column(nombre)"`
-	Activo            bool      `orm:"column(activo)"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone)"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone)"`
+	Activo            bool      `orm:"column(activo);null"`
+	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone);null;auto_now_add"`
+	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone);null;auto_now"`
 }
 
 func (t *Rol) TableName() string {
@@ -30,6 +30,7 @@ func init() {
 // last inserted Id on success.
 func AddRol(m *Rol) (id int64, err error) {
 	o := orm.NewOrm()
+	m.Activo = true
 	id, err = o.Insert(m)
 	return
 }

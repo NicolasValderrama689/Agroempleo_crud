@@ -11,12 +11,12 @@ import (
 )
 
 type TipoDocumento struct {
-	Id                int       `orm:"column(Id_tipo_documento);pk"`
+	Id                int       `orm:"column(Id_tipo_documento);pk;auto"`
 	Nombre            string    `orm:"column(nombre)"`
 	Descripcion       string    `orm:"column(descripcion);null"`
-	Activo            bool      `orm:"column(activo)"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone)"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone)"`
+	Activo            bool      `orm:"column(activo);null"`
+	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone);null;auto_now_add"`
+	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone);null;auto_now"`
 }
 
 func (t *TipoDocumento) TableName() string {
@@ -31,6 +31,7 @@ func init() {
 // last inserted Id on success.
 func AddTipoDocumento(m *TipoDocumento) (id int64, err error) {
 	o := orm.NewOrm()
+	m.Activo = true
 	id, err = o.Insert(m)
 	return
 }

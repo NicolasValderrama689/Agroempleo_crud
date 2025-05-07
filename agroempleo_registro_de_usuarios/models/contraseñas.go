@@ -11,11 +11,11 @@ import (
 )
 
 type Contraseñas struct {
-	Id                int       `orm:"column(id_contraseñas);pk"`
+	Id                int       `orm:"column(id_contraseñas);pk;auto"`
 	Contraseña        string    `orm:"column(contraseña)"`
-	Activo            bool      `orm:"column(activo)"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone)"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone)"`
+	Activo            bool      `orm:"column(activo);null"`
+	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone);null;auto_now_add"`
+	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone);null;auto_now"`
 }
 
 func (t *Contraseñas) TableName() string {
@@ -30,6 +30,7 @@ func init() {
 // last inserted Id on success.
 func AddContraseñas(m *Contraseñas) (id int64, err error) {
 	o := orm.NewOrm()
+	m.Activo = true
 	id, err = o.Insert(m)
 	return
 }
