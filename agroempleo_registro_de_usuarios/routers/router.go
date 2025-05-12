@@ -28,7 +28,7 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/contraseñas",
+		beego.NSNamespace("/contrasenas",
 			beego.NSInclude(
 				&controllers.ContraseñasController{},
 			),
