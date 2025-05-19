@@ -11,15 +11,15 @@ import (
 )
 
 type InformacionLaboral struct {
-Id int `orm:"column(id);pk"`
+Id int `orm:"column(id);pk;auto"`
 Empresa string `orm:"column(empresa);null"`
 Cargo string `orm:"column(cargo);null"`
 FechaInicio time.Time `orm:"column(fecha_inicio);type(timestamp with time zone);null"`
 FechaFin time.Time `orm:"column(fecha_fin);type(timestamp with time zone);null"`
 IdUsuarios int `orm:"column(id_usuarios)"`
 Activo bool `orm:"column(activo)"`
-Fecha_Creacion time.Time `orm:"column(fecha_creacion);type(timestamp with time zone)"`
-FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone)"`
+Fecha_Creacion time.Time `orm:"column(fecha_creacion);type(timestamp with time zone);auto_now_add"`
+FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone);auto_now"`
 Soporte string `orm:"column(soporte);null"`
 }
 
@@ -36,6 +36,7 @@ func init() {
 // last inserted Id on success.
 func AddInformacionLaboral(m *InformacionLaboral) (id int64, err error) {
 	o := orm.NewOrm()
+	m.Activo = true
 	id, err = o.Insert(m)
 	return
 }
