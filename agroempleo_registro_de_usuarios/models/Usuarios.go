@@ -15,7 +15,7 @@ type Usuarios struct {
 	Nombre                       string         `orm:"column(Nombre)"`
 	Apellido                     string         `orm:"column(Apellido)"`
 	NDocumento                   string         `orm:"column(n_documento);null"`
-	FechaNacimiento              time.Time      `orm:"column(Fecha_nacimiento);type(timestamp with time zone)"`
+	FechaNacimiento              string     `orm:"column(Fecha_nacimiento);"`
 	CorreoElectronico            string         `orm:"column(correo_electronico)"`
 	Ciudad                       string         `orm:"column(ciudad)"`
 	Departamento                 string         `orm:"column(departamento)"`
