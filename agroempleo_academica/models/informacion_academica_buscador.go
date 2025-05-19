@@ -11,7 +11,7 @@ import (
 )
 
 type InformacionAcademicaBuscador struct {
-	Id                int       `orm:"column(id_informacion_academica);pk"`
+	Id                int       `orm:"column(id_informacion_academica);pk;auto"`
 	Titulo            string    `orm:"column(titulo);null"`
 	Institucion       string    `orm:"column(institucion);null"`
 	FechaDeInicio     time.Time `orm:"column(fecha_de_inicio);type(timestamp with time zone);null"`
@@ -22,8 +22,8 @@ type InformacionAcademicaBuscador struct {
 	Pais              string    `orm:"column(pais);null"`
 	Nivel             string    `orm:"column(nivel);null"`
 	IdUsuarios        int       `orm:"column(id_usuarios)"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone)"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone)"`
+	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp with time zone);auto_now_add"`
+	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp with time zone);auto_now_add"`
 	Activo            bool      `orm:"column(activo)"`
 	Soporte           string    `orm:"column(soporte);null"`
 }
@@ -40,6 +40,7 @@ func init() {
 // last inserted Id on success.
 func AddInformacionAcademicaBuscador(m *InformacionAcademicaBuscador) (id int64, err error) {
 	o := orm.NewOrm()
+	m.Activo = true
 	id, err = o.Insert(m)
 	return
 }
