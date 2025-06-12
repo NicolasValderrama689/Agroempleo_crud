@@ -51,7 +51,7 @@ func AddUsuarios(m *Usuarios) (id int64, err error) {
 func GetUsuariosById(id int) (v *Usuarios, err error) {
 	o := orm.NewOrm()
 	v = &Usuarios{Id: id}
-	if err = o.Read(v); err == nil {
+	if err = o.QueryTable(new(Usuarios)).RelatedSel().Filter("Id", id).One(v); err == nil {
 		return v, nil
 	}
 	return nil, err
